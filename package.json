@@ -5,6 +5,7 @@
   "repository": "github:obscura-scripturae/currently-fronting",
   "license": "AGPL-3.0-or-later",
   "scripts": {
+    "prettify": "npx prettier --write .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
