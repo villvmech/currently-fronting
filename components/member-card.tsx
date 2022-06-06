@@ -42,7 +42,7 @@ const MemberCard = (props: MemberCardProps) => {
             )}
             {member.birthday && <div className='italic'>{member.birthday}</div>}
             {member.description && (
-              <ReactMarkdown className='text-justify max-w-prose'>
+              <ReactMarkdown className='text-justify max-w-prose whitespace-pre-line'>
                 {member.description}
               </ReactMarkdown>
             )}
