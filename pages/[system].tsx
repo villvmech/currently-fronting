@@ -37,7 +37,9 @@ const Home: NextPage = () => {
   return (
     <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
       <Head>
-        <title>{fronters?.members.map(member => member.name).join(' | ')}</title>
+        <title>
+          {fronters?.members.map(member => member.name).join(' | ')}
+        </title>
         <meta name='description' content={`Fronters for ${system}`} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
