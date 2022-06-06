@@ -44,7 +44,10 @@ const Home: NextPage = () => {
           <title>
             {fronters?.members.map(member => member.name).join(' | ')}
           </title>
-          <meta name='description' content={`Fronters for ${system}`} />
+          <meta
+            name='description'
+            content="a web app for displaying a PluralKit system's current public fronters"
+          />
           <link rel='icon' href='/favicon.ico' />
         </Head>
 
