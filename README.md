@@ -6,7 +6,7 @@ The index automatically redirects to an example page, but folks can find their s
 
 # Privacy Policy
 
-No data is processed on the server side, although requests are cached and automatically invalidated when data changes through [SWR](https://swr.vercel.app/). All API requests are made in the browser, directly to the PluralKit API. Don't believe us? Check the network logs in the browser developer tools!
+Requests are cached and automatically invalidated when data changes through [SWR](https://swr.vercel.app/). Initial API requests are made in the browser, directly to the PluralKit API. This app only accesses publicly available data on fronters.
 
 # Terms of Service
 
