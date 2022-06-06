@@ -1,6 +1,5 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
 import { useRouter } from 'next/router'
 import useSWR, { Key } from 'swr'
 import MemberCard from '../components/member-card'
