@@ -1,5 +1,6 @@
 import { Member } from '../util/types'
 import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 interface MemberCardProps {
   member: Member | string
@@ -41,12 +42,18 @@ const MemberCard = (props: MemberCardProps) => {
               <h2 className='text-lg italic'>{member.display_name}</h2>
             )}
             {member.pronouns && (
-              <div className='font-bold'>{member.pronouns}</div>
+              <ReactMarkdown className='font-bold'>
+                {member.pronouns.replace(/\n/g, '\n\n')}
+              </ReactMarkdown>
             )}
             {member.birthday && <div className='italic'>{member.birthday}</div>}
             {member.description && (
-              <ReactMarkdown className='text-justify max-w-prose whitespace-pre-line'>
-                {member.description}
+              <ReactMarkdown className='text-justify max-w-prose' remarkPlugins={[remarkGfm]} components={{
+                ul: ({node, ...props}) => <ul className='list-disc list-inside' {...props} />,
+                ol: ({node, ...props}) => <ul className='list-decimal list-inside' {...props} />,
+                blockquote: ({node, ...props}) => <blockquote className='border-l-4 pl-1 border-slate-900 dark:border-slate-50' {...props} />,
+              }}>
+                {member.description.replace(/\n/g, '\n\n')}
               </ReactMarkdown>
             )}
           </div>
