@@ -27,9 +27,12 @@ const MemberCard = (props: MemberCardProps) => {
         <div>
           {member.avatar_url && (
             <img
-              className='max-h-48 object-cover rounded float-left p-2'
+              className='max-h-48 border-4 object-cover rounded float-left mr-2'
               src={member.avatar_url}
               alt={member.name}
+              style={{
+                borderColor: `#${member.color}`,
+              }}
             />
           )}
           <div>
