@@ -10,3 +10,15 @@
     @apply underline;
   }
 }
+
+@layer components {
+  blockquote {
+    @apply border-l-4 pl-1 border-slate-900 dark:border-slate-50;
+  }
+  ol {
+    @apply list-decimal list-inside;
+  }
+  ul {
+    @apply list-disc list-inside;
+  }
+}
