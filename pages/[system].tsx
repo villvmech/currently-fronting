@@ -1,9 +1,9 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import { useRouter } from 'next/router'
 import useSWR, { Key } from 'swr'
+import MemberCard from '../components/member-card'
 import { Switch } from '../util/types'
 
 const useFronters = (system: Key) => {
@@ -35,12 +35,19 @@ const Home: NextPage = () => {
   const { fronters, isLoading, error } = useFronters(system as Key)
 
   return (
-    <div className={styles.container}>
+    <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
       <Head>
         <title>{fronters?.members.map(member => member.name).join('| ')}</title>
         <meta name='description' content={`Fronters for ${system}`} />
         <link rel='icon' href='/favicon.ico' />
       </Head>
+
+      {isLoading && <MemberCard member='Loading...' />}
+      {error && <MemberCard member='Error loading fronters :(' />}
+      {fronters &&
+        fronters?.members.map(member => (
+          <MemberCard key={member.id} member={member} />
+        ))}
     </div>
   )
 }
