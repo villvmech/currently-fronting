@@ -10,7 +10,7 @@ Requests are cached on the client-side and automatically invalidated when data c
 
 # Terms of Service
 
-This app is hosted on [Vercel](https://vercel.com/), so we're beholden to their service uptime guarantees. Other than that, the app _shouldn't_ break due to the way Vercel works, unless we bork something on a branch and it somehow makes it to `main`. All that said...
+This app is hosted on [Vercel](https://vercel.com/), so we're beholden to their service guarantees. Other than that, the app _shouldn't_ break due to the way Vercel works, unless we bork something on a branch and it somehow makes it to `main`. All that said...
 
 # Bug Reporting
 
