@@ -11,11 +11,14 @@ const useFronters = (system: Key) => {
     const data = await fetch(
       `https://api.pluralkit.me/v2/systems/${system}/fronters`,
     )
-    if (data.ok) {
+    if (!data.ok) {
+      throw new Error(
+        "An error occurred while fetching this system's data. Perhaps their fronters are private?",
+      )
+    } else {
       const fronters: Switch = await data.json()
       return fronters
     }
-    return null
   }
 
   const { data, error } = useSWR<Switch | null>(system, (system: Key) =>
@@ -46,7 +49,9 @@ const Home: NextPage = () => {
         </Head>
 
         {isLoading && <MemberCard member='Loading...' />}
-        {error && <MemberCard member='Error loading fronters :(' />}
+        {error && (
+          <MemberCard member="An error occurred while fetching this system's data. Perhaps their fronters are private?" />
+        )}
         {fronters &&
           fronters?.members.map(member => (
             <MemberCard key={member.id} member={member} />
