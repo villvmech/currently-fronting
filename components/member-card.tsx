@@ -1,4 +1,5 @@
 import { Member } from '../util/types'
+import ReactMarkdown from 'react-markdown'
 
 interface MemberCardProps {
   member: Member | string
@@ -34,17 +35,16 @@ const MemberCard = (props: MemberCardProps) => {
           <div>
             <h1 className='text-xl font-bold'>{member.name}</h1>
             {member.display_name && (
-              <div>
-                <div>AKA</div>
-                <h2 className='text-lg italic'>{member.display_name}</h2>
-              </div>
+              <h2 className='text-lg italic'>{member.display_name}</h2>
             )}
-            {member.pronouns && <div>({member.pronouns})</div>}
-            {member.birthday && <div>{member.birthday}</div>}
+            {member.pronouns && (
+              <div className='font-bold'>{member.pronouns}</div>
+            )}
+            {member.birthday && <div className='italic'>{member.birthday}</div>}
             {member.description && (
-              <div className='text-justify max-w-prose'>
+              <ReactMarkdown className='text-justify max-w-prose'>
                 {member.description}
-              </div>
+              </ReactMarkdown>
             )}
           </div>
         </div>
