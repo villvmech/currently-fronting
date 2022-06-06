@@ -1,34 +1,17 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# currently fronting
 
-## Getting Started
+A web app for displaying a PluralKit system's current public fronters.
 
-First, run the development server:
+The index automatically redirects to an example page, but folks can find their system or a friend's at `https://currently-fronting.obscurascripturae.com/system-id-here`. Just replace `system-id-here` with the system ID in question. Our page, for example, is available at https://currently-fronting.obscurascripturae.com/mdpgz.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+# Privacy Policy
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+No data is processed on the server side. All API requests are made in the browser, directly to the PluralKit API. Don't believe us? Check the network logs in the browser developer tools!
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+# Terms of Service
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+This app is hosted on [Vercel](https://vercel.com/), so we're beholden to their service uptime guarantees. Other than that, the app _shouldn't_ break due to the way Vercel works, unless we bork something on a branch and it somehow makes it to `main`. All that said...
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# Bug Reporting
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+If you encounter an issue with the app, please feel free to file a GitHub issue in this project or mention us (`pulchra mentis#1321`) in the PluralKit Discord server's `#community-resources-help` channel.

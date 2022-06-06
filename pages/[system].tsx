@@ -35,21 +35,27 @@ const Home: NextPage = () => {
   const { fronters, isLoading, error } = useFronters(system as Key)
 
   return (
-    <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
-      <Head>
-        <title>
-          {fronters?.members.map(member => member.name).join(' | ')}
-        </title>
-        <meta name='description' content={`Fronters for ${system}`} />
-        <link rel='icon' href='/favicon.ico' />
-      </Head>
+    <div>
+      <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
+        <Head>
+          <title>
+            {fronters?.members.map(member => member.name).join(' | ')}
+          </title>
+          <meta name='description' content={`Fronters for ${system}`} />
+          <link rel='icon' href='/favicon.ico' />
+        </Head>
 
-      {isLoading && <MemberCard member='Loading...' />}
-      {error && <MemberCard member='Error loading fronters :(' />}
-      {fronters &&
-        fronters?.members.map(member => (
-          <MemberCard key={member.id} member={member} />
-        ))}
+        {isLoading && <MemberCard member='Loading...' />}
+        {error && <MemberCard member='Error loading fronters :(' />}
+        {fronters &&
+          fronters?.members.map(member => (
+            <MemberCard key={member.id} member={member} />
+          ))}
+      </div>
+      {/* prettier-ignore */}
+      <footer className='container mx-auto max-w-4xl p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded'>
+      Powered by <span className="italic">a lot</span> of <a href="https://github.com/obscura-scripturae/currently-fronting/blob/main/package.json">open source software</a> and designed to interface with <a href="https://pluralkit.me/">PluralKit</a>. Developed by <a href="https://github.com/pulchra-mentis">pulchra mentis</a> and available under the <a href="https://github.com/obscura-scripturae/currently-fronting/blob/main/LICENSE">AGPL 3.0 license</a>. Find a bug? Follow the instructions on <a href="https://github.com/obscura-scripturae/currently-fronting">GitHub</a> in the README.
+    </footer>
     </div>
   )
 }
