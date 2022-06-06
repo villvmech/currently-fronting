@@ -42,7 +42,9 @@ const Home: NextPage = () => {
       <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
         <Head>
           <title>
-            {fronters?.members.map(member => member.name).join(' | ')}
+            {fronters
+              ? fronters.members.map(member => member.name).join(' | ')
+              : 'currently fronting'}
           </title>
           <meta
             name='description'
