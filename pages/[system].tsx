@@ -21,8 +21,10 @@ const useFronters = (system: Key) => {
     }
   }
 
-  const { data, error } = useSWR<Switch | null>(system, (system: Key) =>
-    getFronters(system),
+  const { data, error } = useSWR<Switch | null>(
+    system,
+    (system: Key) => getFronters(system),
+    { refreshInterval: 30 * 1000 },
   )
 
   return {
