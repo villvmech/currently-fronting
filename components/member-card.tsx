@@ -48,11 +48,23 @@ const MemberCard = (props: MemberCardProps) => {
             )}
             {member.birthday && <div className='italic'>{member.birthday}</div>}
             {member.description && (
-              <ReactMarkdown className='text-justify max-w-prose' remarkPlugins={[remarkGfm]} components={{
-                ul: ({node, ...props}) => <ul className='list-disc list-inside' {...props} />,
-                ol: ({node, ...props}) => <ul className='list-decimal list-inside' {...props} />,
-                blockquote: ({node, ...props}) => <blockquote className='border-l-4 pl-1 border-slate-900 dark:border-slate-50' {...props} />,
-              }}>
+              <ReactMarkdown
+                className='text-justify max-w-prose'
+                remarkPlugins={[remarkGfm]}
+                components={{
+                  ul: ({ node, ...props }) => (
+                    <ul className='list-disc list-inside' {...props} />
+                  ),
+                  ol: ({ node, ...props }) => (
+                    <ul className='list-decimal list-inside' {...props} />
+                  ),
+                  blockquote: ({ node, ...props }) => (
+                    <blockquote
+                      className='border-l-4 pl-1 border-slate-900 dark:border-slate-50'
+                      {...props}
+                    />
+                  ),
+                }}>
                 {member.description.replace(/\n/g, '\n\n')}
               </ReactMarkdown>
             )}
