@@ -3,7 +3,7 @@ interface ProxyTag {
   suffix: string | null
 }
 
-type Privacy = 'public' | 'private'
+type Privacy = 'public' | 'private' | null
 
 interface MemberPrivacy {
   visibility: Privacy
