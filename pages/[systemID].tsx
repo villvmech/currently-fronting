@@ -2,7 +2,7 @@ import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useSWR, { Key } from 'swr'
-import MemberCard from '../components/member-card'
+import Card from '../components/card'
 import { Switch, System } from '../util/types'
 
 interface FrontersAndSystem {
@@ -10,23 +10,34 @@ interface FrontersAndSystem {
   system: System | null
 }
 
-const getFrontersAndSystem = async (systemID: Key) => {
-  const systemData = await fetch(
-    `https://api.pluralkit.me/v2/systems/${systemID}`,
-  )
+type FrontersAndSystemKey = string | string[] | undefined
+type FrontersAndSystemKeys = FrontersAndSystemKey[]
 
+const getFrontersAndSystem = async (
+  systemID: FrontersAndSystemKey,
+  includeSystem: FrontersAndSystemKey,
+) => {
   let system: System | null = null
-  if (systemData.ok) {
-    system = await systemData.json()
+  if (
+    includeSystem === 'true' ||
+    (includeSystem === '1' && typeof systemID === 'string')
+  ) {
+    const systemData = await fetch(
+      `https://api.pluralkit.me/v2/systems/${systemID}`,
+    )
+    if (systemData.ok) {
+      system = await systemData.json()
+    }
   }
 
-  const frontersData = await fetch(
-    `https://api.pluralkit.me/v2/systems/${systemID}/fronters`,
-  )
-
   let fronters: Switch | null = null
-  if (frontersData.ok) {
-    fronters = await frontersData.json()
+  if (typeof systemID === 'string') {
+    const frontersData = await fetch(
+      `https://api.pluralkit.me/v2/systems/${systemID}/fronters`,
+    )
+    if (frontersData.ok) {
+      fronters = await frontersData.json()
+    }
   }
 
   return { fronters: fronters, system: system }
@@ -34,7 +45,8 @@ const getFrontersAndSystem = async (systemID: Key) => {
 
 const getServerSideProps: GetServerSideProps = async context => {
   const { fronters, system } = await getFrontersAndSystem(
-    context.params?.system,
+    context.params?.systemID,
+    context.params?.s,
   )
 
   return {
@@ -44,10 +56,10 @@ const getServerSideProps: GetServerSideProps = async context => {
   }
 }
 
-const useFrontersAndSystem = (systemID: Key) => {
+const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
   const { data } = useSWR<FrontersAndSystem>(
-    systemID,
-    (systemID: Key) => getFrontersAndSystem(systemID),
+    [frontersAndSystemKeys[0], frontersAndSystemKeys[1]],
+    (systemID, includeSystem) => getFrontersAndSystem(systemID, includeSystem),
     { refreshInterval: 30 * 1000 },
   )
 
@@ -60,8 +72,8 @@ const useFrontersAndSystem = (systemID: Key) => {
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const { systemID } = router.query
-  const { fronters, system } = useFrontersAndSystem(systemID as Key)
+  const { systemID, s } = router.query
+  const { fronters, system } = useFrontersAndSystem([systemID, s])
 
   return (
     <div>
@@ -74,19 +86,22 @@ const Home: NextPage = () => {
           </title>
           <meta
             name='description'
-            content="a web app for displaying a PluralKit system's current public fronters"
+            content={
+              system
+                ? `Current fronters for ${system.name}`
+                : 'currently fronting'
+            }
           />
           <link rel='icon' href='/favicon.ico' />
         </Head>
 
         {fronters &&
           fronters?.members.map(member => (
-            <MemberCard key={member.uuid} member={member} />
+            <Card key={member.uuid} member={member} />
           ))}
-        
-        {system &&
-            <MemberCard key={system.uuid} system={system} />
-          }
+      </div>
+      <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center'>
+        {system && <Card key={system.uuid} system={system} />}
       </div>
 
       {/* prettier-ignore */}

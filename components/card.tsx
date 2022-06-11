@@ -1,14 +1,17 @@
 import { Member, System } from '../util/types'
-import { toHTML } from 'discord-markdown'
-import parse, {
+import {
   DOMNode,
   Element,
   HTMLReactParserOptions,
   Text,
 } from 'html-react-parser'
 import { DateTime, DateTimeFormatOptions } from 'luxon'
+import CardAvatar from './card-avatar'
+import CardBanner from './card-banner'
+import CardPronouns from './card-pronouns'
+import CardDescription from './card-description'
 
-interface MemberCardProps {
+interface CardProps {
   member?: Member
   system?: System
 }
@@ -58,53 +61,65 @@ const htmlReactParserOptions = {
   },
 } as HTMLReactParserOptions
 
-const MemberCard = (props: MemberCardProps) => {
+const Card = (props: CardProps) => {
   const { member, system } = props
-  
-  const memberCardClasses = system
-    ? 'container max-w-xl p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded'
+
+  const cardClasses = system
+    ? 'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded'
     : 'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col items-center gap-2'
   return (
-    <div className={memberCardClasses}>
-      {member.banner && (
-        <img
-          className='max-h-48 object-cover rounded'
-          src={member.banner}
-          alt={member.name}
-        />
+    <div className={cardClasses}>
+      {member?.banner && (
+        <CardBanner name={member.name} banner={member.banner} />
+      )}
+      {system?.banner && (
+        <CardBanner name={system.name} banner={system.banner} />
       )}
       <div>
-        {member.avatar_url && (
-          <img
-            className='max-h-48 border-4 object-cover rounded float-left mr-2'
-            src={member.avatar_url}
-            alt={member.name}
-            style={{
-              borderColor: `#${member.color}`,
-            }}
+        {member?.avatar_url && (
+          <CardAvatar
+            name={member.name}
+            avatar_url={member.avatar_url}
+            color={member.color}
+          />
+        )}
+        {system?.avatar_url && (
+          <CardAvatar
+            name={system.name}
+            avatar_url={system.avatar_url}
+            color={system.color}
           />
         )}
         <div>
-          <h1 className='text-xl font-bold'>{member.name}</h1>
-          {member.display_name && (
+          <h1 className='text-xl font-bold'>{member?.name ?? system?.name}</h1>
+          {member && member.display_name && (
             <h2 className='text-lg italic'>{member.display_name}</h2>
           )}
-          {member.pronouns && (
-            <div>
-              {parse(
-                toHTML(member.pronouns, { embed: true }),
-                htmlReactParserOptions,
-              )}
-            </div>
+          {system && <h2 className='text-lg italic'>System</h2>}
+          {member?.pronouns && (
+            <CardPronouns
+              pronouns={member.pronouns}
+              htmlReactParserOptions={htmlReactParserOptions}
+            />
           )}
-          {member.birthday && <div className='italic'>{member.birthday}</div>}
-          {member.description && (
-            <div className='text-justify max-w-prose'>
-              {parse(
-                toHTML(member.description, { embed: true }),
-                htmlReactParserOptions,
-              )}
-            </div>
+          {system?.pronouns && (
+            <CardPronouns
+              pronouns={system.pronouns}
+              htmlReactParserOptions={htmlReactParserOptions}
+            />
+          )}
+          {member?.birthday && <div className='italic'>{member.birthday}</div>}
+          {member?.description && (
+            <CardDescription
+              description={member.description}
+              htmlReactParserOptions={htmlReactParserOptions}
+            />
+          )}
+          {system?.description && (
+            <CardDescription
+              description={system.description}
+              htmlReactParserOptions={htmlReactParserOptions}
+            />
           )}
         </div>
       </div>
@@ -112,4 +127,4 @@ const MemberCard = (props: MemberCardProps) => {
   )
 }
 
-export default MemberCard
+export default Card
