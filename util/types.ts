@@ -61,4 +61,12 @@ interface Switch {
   members: Member[]
 }
 
-export type { ProxyTag, Privacy, SystemPrivacy, System, MemberPrivacy, Member, Switch }
+export type {
+  ProxyTag,
+  Privacy,
+  SystemPrivacy,
+  System,
+  MemberPrivacy,
+  Member,
+  Switch,
+}

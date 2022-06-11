@@ -11,17 +11,19 @@ interface FrontersAndSystem {
 }
 
 const getFrontersAndSystem = async (systemID: Key) => {
-  const systemData = await fetch(`https://api.pluralkit.me/v2/systems/${systemID}`)
+  const systemData = await fetch(
+    `https://api.pluralkit.me/v2/systems/${systemID}`,
+  )
 
   let system: System | null = null
   if (systemData.ok) {
     system = await systemData.json()
   }
-  
+
   const frontersData = await fetch(
     `https://api.pluralkit.me/v2/systems/${systemID}/fronters`,
   )
-  
+
   let fronters: Switch | null = null
   if (frontersData.ok) {
     fronters = await frontersData.json()
@@ -31,11 +33,13 @@ const getFrontersAndSystem = async (systemID: Key) => {
 }
 
 const getServerSideProps: GetServerSideProps = async context => {
-  const { fronters, system } = await getFrontersAndSystem(context.params?.system)
+  const { fronters, system } = await getFrontersAndSystem(
+    context.params?.system,
+  )
 
   return {
     props: {
-      fallback: { fronters, system }
+      fallback: { fronters, system },
     },
   }
 }
@@ -46,10 +50,11 @@ const useFrontersAndSystem = (systemID: Key) => {
     (systemID: Key) => getFrontersAndSystem(systemID),
     { refreshInterval: 30 * 1000 },
   )
-  
+
   const { fronters, system } = data ? data : { fronters: null, system: null }
   return {
-    fronters, system
+    fronters,
+    system,
   }
 }
 
