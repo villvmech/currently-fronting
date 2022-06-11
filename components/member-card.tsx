@@ -6,6 +6,7 @@ import parse, {
   HTMLReactParserOptions,
   Text,
 } from 'html-react-parser'
+import { DateTime, DateTimeFormatOptions } from 'luxon'
 
 interface MemberCardProps {
   member: Member | string
@@ -43,20 +44,22 @@ const MemberCard = (props: MemberCardProps) => {
           const formattedDateTime = textNodeData.replaceAll(
             timestampRegex,
             (match, p1, p2) => {
-              const timestamp = new Date(parseInt(p1) * 1000)
+              const timestamp = DateTime.fromSeconds(parseInt(p1))
               const format: string = p2 ? p2[1] : 'f'
-              let dateTimeFormatOptions = {
-                t: { timeStyle: 'short' },
-                T: { timeStyle: 'medium' },
-                d: { dateStyle: 'short' },
-                D: { dateStyle: 'medium' },
-                f: { dateStyle: 'medium', timeStyle: 'short' },
-                F: { dateStyle: 'long', timeStyle: 'short' },
-              }[format]
-              return Intl.DateTimeFormat(
-                [],
-                dateTimeFormatOptions as Intl.DateTimeFormatOptions,
-              ).format(timestamp)
+              if (format !== 'R') {
+                let dateTimeFormatOptions = {
+                  t: { timeStyle: 'short' },
+                  T: { timeStyle: 'medium' },
+                  d: { dateStyle: 'short' },
+                  D: { dateStyle: 'medium' },
+                  f: { dateStyle: 'medium', timeStyle: 'short' },
+                  F: { dateStyle: 'full', timeStyle: 'short' },
+                }[format]
+                return timestamp.toLocaleString(
+                  dateTimeFormatOptions as DateTimeFormatOptions,
+                )
+              }
+              return timestamp.toRelative() as string
             },
           )
           return <span>{formattedDateTime}</span>
