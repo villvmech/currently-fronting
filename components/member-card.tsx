@@ -44,7 +44,7 @@ const MemberCard = (props: MemberCardProps) => {
             timestampRegex,
             (match, p1, p2) => {
               const timestamp = new Date(parseInt(p1) * 1000)
-              const format: string = p2 ? p2.substr(1) : 'f'
+              const format: string = p2 ? p2[1] : 'f'
               let dateTimeFormatOptions = {
                 t: { timeStyle: 'short' },
                 T: { timeStyle: 'medium' },
