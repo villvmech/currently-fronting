@@ -1,4 +1,4 @@
-import { Member } from '../util/types'
+import { Member, System } from '../util/types'
 import { toHTML } from 'discord-markdown'
 import parse, {
   DOMNode,
@@ -9,8 +9,8 @@ import parse, {
 import { DateTime, DateTimeFormatOptions } from 'luxon'
 
 interface MemberCardProps {
-  member: Member
-  isSystem: boolean
+  member?: Member
+  system?: System
 }
 
 const timestampRegex = /<t:(\d{10})(:[tTdDfFR])?>/g
@@ -59,9 +59,9 @@ const htmlReactParserOptions = {
 } as HTMLReactParserOptions
 
 const MemberCard = (props: MemberCardProps) => {
-  const { member, isSystem } = props
-
-  const memberCardClasses = isSystem
+  const { member, system } = props
+  
+  const memberCardClasses = system
     ? 'container max-w-xl p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded'
     : 'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col items-center gap-2'
   return (

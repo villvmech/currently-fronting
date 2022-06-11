@@ -81,8 +81,12 @@ const Home: NextPage = () => {
 
         {fronters &&
           fronters?.members.map(member => (
-            <MemberCard key={member.id} member={member} isSystem={false} />
+            <MemberCard key={member.uuid} member={member} />
           ))}
+        
+        {system &&
+            <MemberCard key={system.uuid} system={system} />
+          }
       </div>
 
       {/* prettier-ignore */}
