@@ -1,26 +1,36 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useSWR, { Key } from 'swr'
 import MemberCard from '../components/member-card'
 import { Switch } from '../util/types'
 
-const useFronters = (system: Key) => {
-  const getFronters = async (system: Key) => {
-    const data = await fetch(
-      `https://api.pluralkit.me/v2/systems/${system}/fronters`,
+const getFronters = async (system: Key) => {
+  const data = await fetch(
+    `https://api.pluralkit.me/v2/systems/${system}/fronters`,
+  )
+  if (!data.ok) {
+    throw new Error(
+      "An error occurred while fetching this system's data. Perhaps their fronters are private?",
     )
-    if (!data.ok) {
-      throw new Error(
-        "An error occurred while fetching this system's data. Perhaps their fronters are private?",
-      )
-    } else {
-      const fronters: Switch = await data.json()
-      return fronters
-    }
+  } else {
+    const fronters: Switch = await data.json()
+    return fronters
   }
+}
 
-  const { data, error } = useSWR<Switch | null>(
+const getServerSideProps: GetServerSideProps = async context => {
+  const fronters = await getFronters(context.params?.system)
+
+  return {
+    props: {
+      fallback: fronters,
+    },
+  }
+}
+
+const useFronters = (system: Key) => {
+  const { data } = useSWR<Switch | null>(
     system,
     (system: Key) => getFronters(system),
     { refreshInterval: 30 * 1000 },
@@ -28,15 +38,13 @@ const useFronters = (system: Key) => {
 
   return {
     fronters: data,
-    isLoading: !error && !data,
-    error: error,
   }
 }
 
 const Home: NextPage = () => {
   const router = useRouter()
   const { system } = router.query
-  const { fronters, isLoading, error } = useFronters(system as Key)
+  const { fronters } = useFronters(system as Key)
 
   return (
     <div>
@@ -54,10 +62,6 @@ const Home: NextPage = () => {
           <link rel='icon' href='/favicon.ico' />
         </Head>
 
-        {isLoading && <MemberCard member='Loading...' />}
-        {error && (
-          <MemberCard member="An error occurred while fetching this system's data. Perhaps their fronters are private?" />
-        )}
         {fronters &&
           fronters?.members.map(member => (
             <MemberCard key={member.id} member={member} />
@@ -71,4 +75,5 @@ const Home: NextPage = () => {
   )
 }
 
+export { getServerSideProps }
 export default Home
