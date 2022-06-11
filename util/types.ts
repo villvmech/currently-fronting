@@ -5,6 +5,29 @@ interface ProxyTag {
 
 type Privacy = 'public' | 'private'
 
+interface SystemPrivacy {
+  description_privacy: Privacy
+  pronoun_privacy: Privacy
+  member_list_privacy: Privacy
+  group_list_privacy: Privacy
+  front_privacy: Privacy
+  front_history_privacy: Privacy
+}
+
+interface System {
+  id: string
+  uuid: string
+  name: string
+  description: string | null
+  tag: string
+  pronouns: string | null
+  avatar_url: string | null
+  banner: string | null
+  color: string
+  created: string
+  privacy: SystemPrivacy | null
+}
+
 interface MemberPrivacy {
   visibility: Privacy
   name_privacy: Privacy
@@ -38,4 +61,12 @@ interface Switch {
   members: Member[]
 }
 
-export type { ProxyTag, Privacy, MemberPrivacy, Member, Switch }
+export type {
+  ProxyTag,
+  Privacy,
+  SystemPrivacy,
+  System,
+  MemberPrivacy,
+  Member,
+  Switch,
+}

@@ -6,7 +6,7 @@ The index automatically redirects to an example page, but folks can find their s
 
 # Privacy Policy
 
-Requests are cached on the client-side and automatically invalidated when data changes through [SWR](https://swr.vercel.app/). When fronters for a system update, the cache invalidates. Upon the site's return to focus, it updates the page automatically to display the new data. All API requests are made in the browser, directly to the PluralKit API. This app only accesses publicly available data on fronters.
+Initial requests are made through [getServerSideProps](https://nextjs.org/docs/api-reference/data-fetching/get-server-side-props). Responses are subsequently cached on the client-side and automatically invalidated when data changes through [SWR](https://swr.vercel.app/). When fronters for a system update, the cache invalidates. Upon the site's return to focus, it updates the page automatically to display the new data. All API requests beyond the initial one are made in the browser, directly to the PluralKit API. This app only accesses publicly available data on fronters.
 
 # Terms of Service
 
