@@ -1,6 +1,12 @@
 import { Member } from '../util/types'
 import { toHTML } from 'discord-markdown'
-import parse, { Element, HTMLReactParserOptions } from 'html-react-parser'
+import parse, {
+  DOMNode,
+  Element,
+  HTMLReactParserOptions,
+  Text,
+} from 'html-react-parser'
+import { DateTime, DateTimeFormatOptions } from 'luxon'
 
 interface MemberCardProps {
   member: Member | string
@@ -16,10 +22,12 @@ const MemberCard = (props: MemberCardProps) => {
       </div>
     )
   } else {
+    const timestampRegex = /<t:(\d{10})(:[tTdDfFR])?>/g
+
     const htmlReactParserOptions = {
-      replace: (node: Element) => {
+      replace: (node: DOMNode) => {
         if (
-          node.type === 'tag' &&
+          node instanceof Element &&
           node.name === 'img' &&
           node.attribs.class.split(' ').includes('d-emoji')
         ) {
@@ -30,6 +38,31 @@ const MemberCard = (props: MemberCardProps) => {
               alt={node.attribs.alt}
             />
           )
+        }
+        if (node.type === 'text' && timestampRegex.test((node as Text).data)) {
+          const textNodeData = (node as Text).data
+          const formattedDateTime = textNodeData.replaceAll(
+            timestampRegex,
+            (match, p1, p2) => {
+              const timestamp = DateTime.fromSeconds(parseInt(p1))
+              const format: string = p2 ? p2[1] : 'f'
+              if (format !== 'R') {
+                let dateTimeFormatOptions = {
+                  t: { timeStyle: 'short' },
+                  T: { timeStyle: 'medium' },
+                  d: { dateStyle: 'short' },
+                  D: { dateStyle: 'medium' },
+                  f: { dateStyle: 'medium', timeStyle: 'short' },
+                  F: { dateStyle: 'full', timeStyle: 'short' },
+                }[format]
+                return timestamp.toLocaleString(
+                  dateTimeFormatOptions as DateTimeFormatOptions,
+                )
+              }
+              return timestamp.toRelative() as string
+            },
+          )
+          return <span>{formattedDateTime}</span>
         }
       },
     } as HTMLReactParserOptions
