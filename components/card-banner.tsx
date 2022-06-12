@@ -11,6 +11,8 @@ const CardBanner = (props: CardBannerProps) => {
       className='max-h-48 object-cover mx-auto rounded'
       src={banner}
       alt={`Banner for ${name}`}
+      width={1100}
+      height={440}
     />
   )
 }
