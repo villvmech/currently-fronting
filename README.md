@@ -2,7 +2,7 @@
 
 A web app for displaying a [PluralKit](https://pluralkit.me/) system's current public fronters.
 
-The index automatically redirects to an example page, but folks can find their system or a friend's at `https://currently-fronting.obscurascripturae.com/system-id-here`. Just replace `system-id-here` with the system ID in question. Our page, for example, is available at https://currently-fronting.obscurascripturae.com/mdpgz.
+The index automatically redirects to an example page, but folks can find their system or a friend's at `https://front.plural.codes/system-id-here`. Just replace `system-id-here` with the system ID in question. Our page, for example, is available at https://front.plural.codes/menti.
 
 # Privacy Policy
 
