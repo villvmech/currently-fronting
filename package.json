@@ -6,7 +6,7 @@
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "compile": "npx tsc",
-    "prettify": "npx prettier --write .",
+    "prettify": "npx prettier --check .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
