@@ -72,7 +72,7 @@ const Home: NextPage = () => {
             content={
               system
                 ? `Current fronters for ${system.name}`
-                : 'currently fronting'
+                : "a web app for displaying a PluralKit system's current public fronters"
             }
           />
           <link rel='icon' href='/favicon.ico' />
@@ -89,8 +89,8 @@ const Home: NextPage = () => {
 
       {/* prettier-ignore */}
       <footer className='container mx-auto max-w-4xl p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded'>
-      Powered by <span className="italic">a lot</span> of <a href="https://github.com/obscura-scripturae/currently-fronting/blob/main/package.json">open source software</a> and designed to interface with <a href="https://pluralkit.me/">PluralKit</a>. Developed by <a href="https://github.com/pulchra-mentis">pulchra mentis</a> and available under the <a href="https://github.com/obscura-scripturae/currently-fronting/blob/main/LICENSE">AGPL 3.0 license</a>. Find a bug? Follow the instructions on <a href="https://github.com/obscura-scripturae/currently-fronting">GitHub</a> in the README.
-    </footer>
+        Powered by <span className='italic'>a lot</span> of <a href='https://github.com/obscura-scripturae/currently-fronting/blob/main/package.json'>open source software</a> and designed to interface with <a href='https://pluralkit.me/'>PluralKit</a>. Developed by <a href='https://github.com/pulchra-mentis'>pulchra mentis</a> and available under the <a href='https://github.com/obscura-scripturae/currently-fronting/blob/main/LICENSE'>AGPL 3.0 license</a>. Find a bug? Follow the instructions on <a href='https://github.com/obscura-scripturae/currently-fronting'>GitHub</a> in the README.
+      </footer>
     </div>
   )
 }
