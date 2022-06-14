@@ -1,7 +1,7 @@
-import type { GetServerSideProps, NextPage } from 'next'
+import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import useSWR, { Key } from 'swr'
+import useSWR from 'swr'
 import Card from '../components/card'
 import { Switch, System } from '../util/types'
 
@@ -41,19 +41,6 @@ const getFrontersAndSystem = async (
   }
 
   return { fronters, system }
-}
-
-const getServerSideProps: GetServerSideProps = async context => {
-  const { fronters, system } = await getFrontersAndSystem(
-    context.params?.systemID,
-    context.params?.s,
-  )
-
-  return {
-    props: {
-      fallback: { fronters, system },
-    },
-  }
 }
 
 const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
@@ -108,5 +95,4 @@ const Home: NextPage = () => {
   )
 }
 
-export { getServerSideProps }
 export default Home
