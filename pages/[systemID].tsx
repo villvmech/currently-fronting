@@ -40,7 +40,7 @@ const getFrontersAndSystem = async (
     }
   }
 
-  return { fronters: fronters, system: system }
+  return { fronters, system }
 }
 
 const getServerSideProps: GetServerSideProps = async context => {
@@ -63,11 +63,7 @@ const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
     { refreshInterval: 30 * 1000 },
   )
 
-  const { fronters, system } = data ? data : { fronters: null, system: null }
-  return {
-    fronters,
-    system,
-  }
+  return data ? data : { fronters: null, system: null }
 }
 
 const Home: NextPage = () => {
