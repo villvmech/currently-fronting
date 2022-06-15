@@ -19,8 +19,8 @@ const getFrontersAndSystem = async (
 ) => {
   let system: System | null = null
   if (
-    includeSystem === 'true' ||
-    (includeSystem === '1' && typeof systemID === 'string')
+    (includeSystem === 'true' || includeSystem === '1') &&
+    typeof systemID === 'string'
   ) {
     const systemData = await fetch(
       `https://api.pluralkit.me/v2/systems/${systemID}`,
