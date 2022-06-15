@@ -64,7 +64,8 @@ const htmlReactParserOptions = {
 const Card = (props: CardProps) => {
   const { member, system } = props
 
-  const cardClasses = 'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col items-center gap-2'
+  const cardClasses =
+    'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col gap-2'
   return (
     <div className={cardClasses}>
       {member?.banner && (
