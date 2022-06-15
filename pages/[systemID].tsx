@@ -82,9 +82,8 @@ const Home: NextPage = () => {
           fronters?.members.map(member => (
             <Card key={member.uuid} member={member} />
           ))}
-      </div>
-      <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center'>
-        {system && <Card key={system.uuid} system={system} />}
+
+        {system && <Card system={system} />}
       </div>
 
       {/* prettier-ignore */}
