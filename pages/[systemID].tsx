@@ -80,10 +80,10 @@ const Home: NextPage = () => {
 
         {fronters &&
           fronters?.members.map(member => (
-            <Card key={member.uuid} member={member} />
+            <Card key={member.uuid} data={member} />
           ))}
 
-        {system && <Card system={system} />}
+        {system && <Card data={system} />}
       </div>
 
       {/* prettier-ignore */}
