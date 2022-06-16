@@ -9,7 +9,7 @@ import { DateTime, DateTimeFormatOptions } from 'luxon'
 import CardAvatar from './card-avatar'
 import CardBanner from './card-banner'
 import CardPronouns from './card-pronouns'
-import CardDescription from './card-description'
+import CardDescription from './card-text'
 import { BannerPosition, AvatarPosition } from '../util/types'
 
 interface CardProps {
