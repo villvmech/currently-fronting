@@ -1,4 +1,4 @@
-import { Member, System } from '../util/types'
+import { Member, System } from '../util/pk-types'
 import {
   DOMNode,
   Element,
@@ -10,9 +10,12 @@ import CardAvatar from './card-avatar'
 import CardBanner from './card-banner'
 import CardPronouns from './card-pronouns'
 import CardDescription from './card-description'
+import { BannerPosition, AvatarPosition } from '../util/types'
 
 interface CardProps {
   data: Member | System
+  bannerPosition: BannerPosition
+  avatarPosition: AvatarPosition
 }
 
 const timestampRegex = /<t:(\d{10})(:[tTdDfFR])?>/g
@@ -61,7 +64,7 @@ const htmlReactParserOptions = {
 } as HTMLReactParserOptions
 
 const Card = (props: CardProps) => {
-  const { data } = props
+  const { data, bannerPosition, avatarPosition } = props
   const name = data.name
   const banner = data.banner
   const avatar_url = data.avatar_url
@@ -75,7 +78,7 @@ const Card = (props: CardProps) => {
     'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col gap-2'
   return (
     <div className={cardClasses}>
-      {banner && (
+      {banner && bannerPosition === 'text' && (
         <CardBanner banner={banner}>
           <h1 className='text-xl font-bold'>{name}</h1>
           {display_name && display_name && (
@@ -90,12 +93,18 @@ const Card = (props: CardProps) => {
           {birthday && <div className='italic'>{birthday}</div>}
         </CardBanner>
       )}
+      {banner && bannerPosition === 'top' && <CardBanner banner={banner} />}
       <div>
-        {avatar_url && (
-          <CardAvatar name={name} avatar_url={avatar_url} color={color} />
+        {avatar_url && avatarPosition !== 'none' && (
+          <CardAvatar
+            name={name}
+            avatar_url={avatar_url}
+            color={color}
+            avatarPosition={avatarPosition}
+          />
         )}
         <div>
-          {!banner && (
+          {(!banner || bannerPosition !== 'text') && (
             <div>
               <h1 className='text-xl font-bold'>{name}</h1>
               {display_name && display_name && (
@@ -118,6 +127,7 @@ const Card = (props: CardProps) => {
           )}
         </div>
       </div>
+      {banner && bannerPosition === 'bottom' && <CardBanner banner={banner} />}
     </div>
   )
 }

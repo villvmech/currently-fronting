@@ -1,12 +1,12 @@
 interface CardBannerProps {
   banner: string
-  children: React.ReactNode
+  children?: React.ReactNode
 }
 
 const CardBanner = (props: CardBannerProps) => {
   const { banner, children } = props
 
-  return (
+  return children ? (
     <div
       className='h-52 min-w-full mx-auto rounded p-2 bg-no-repeat bg-center bg-cover flex flex-row place-content-center'
       style={{ backgroundImage: `url(${banner})` }}>
@@ -14,6 +14,14 @@ const CardBanner = (props: CardBannerProps) => {
         {children}
       </div>
     </div>
+  ) : (
+    <img
+      className='max-h-48 object-cover mx-auto rounded'
+      src={banner}
+      alt={`Banner for ${name}`}
+      width={600}
+      height={240}
+    />
   )
 }
 
