@@ -2,19 +2,21 @@ import { toHTML } from 'discord-markdown'
 
 import parse, { HTMLReactParserOptions } from 'html-react-parser'
 
-interface CardDescriptionProps {
-  description: string
+interface CardTextProps {
+  text: string
+  embed: boolean
+  className?: string
   htmlReactParserOptions: HTMLReactParserOptions
 }
 
-const CardDescription = (props: CardDescriptionProps) => {
-  const { description, htmlReactParserOptions } = props
+const CardText = (props: CardTextProps) => {
+  const { text, htmlReactParserOptions, className } = props
 
   return (
-    <div className='text-left'>
-      {parse(toHTML(description, { embed: true }), htmlReactParserOptions)}
+    <div className={className}>
+      {parse(toHTML(text, { embed: true }), htmlReactParserOptions)}
     </div>
   )
 }
 
-export default CardDescription
+export default CardText
