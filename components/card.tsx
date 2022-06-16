@@ -8,8 +8,7 @@ import {
 import { DateTime, DateTimeFormatOptions } from 'luxon'
 import CardAvatar from './card-avatar'
 import CardBanner from './card-banner'
-import CardPronouns from './card-pronouns'
-import CardDescription from './card-description'
+import CardText from './card-text'
 import { BannerPosition, AvatarPosition } from '../util/types'
 
 interface CardProps {
@@ -80,13 +79,24 @@ const Card = (props: CardProps) => {
     <div className={cardClasses}>
       {banner && bannerPosition === 'text' && (
         <CardBanner banner={banner}>
-          <h1 className='text-xl font-bold'>{name}</h1>
-          {display_name && display_name && (
-            <h2 className='text-lg italic'>{display_name}</h2>
+          <CardText
+            className='text-xl font-bold'
+            embed={false}
+            htmlReactParserOptions={htmlReactParserOptions}
+            text={name}
+          />
+          {display_name && (
+            <CardText
+              className='text-lg italic'
+              embed={false}
+              htmlReactParserOptions={htmlReactParserOptions}
+              text={display_name}
+            />
           )}
           {pronouns && (
-            <CardPronouns
-              pronouns={pronouns}
+            <CardText
+              text={pronouns}
+              embed={true}
               htmlReactParserOptions={htmlReactParserOptions}
             />
           )}
@@ -106,13 +116,24 @@ const Card = (props: CardProps) => {
         <div>
           {(!banner || bannerPosition !== 'text') && (
             <div>
-              <h1 className='text-xl font-bold'>{name}</h1>
-              {display_name && display_name && (
-                <h2 className='text-lg italic'>{display_name}</h2>
+              <CardText
+                className='text-xl font-bold'
+                embed={false}
+                htmlReactParserOptions={htmlReactParserOptions}
+                text={name}
+              />
+              {display_name && (
+                <CardText
+                  className='text-lg italic'
+                  embed={false}
+                  htmlReactParserOptions={htmlReactParserOptions}
+                  text={display_name}
+                />
               )}
               {pronouns && (
-                <CardPronouns
-                  pronouns={pronouns}
+                <CardText
+                  text={pronouns}
+                  embed={true}
                   htmlReactParserOptions={htmlReactParserOptions}
                 />
               )}
@@ -120,9 +141,11 @@ const Card = (props: CardProps) => {
             </div>
           )}
           {description && (
-            <CardDescription
-              description={description}
+            <CardText
+              text={description}
+              embed={true}
               htmlReactParserOptions={htmlReactParserOptions}
+              className='text-left'
             />
           )}
         </div>
