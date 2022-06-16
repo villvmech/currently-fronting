@@ -24,16 +24,16 @@ An interface for configuring query parameters and viewing y'all's own system's p
 
 ## Query parameter examples
 
-**https://front.plural.codes/menti?b=text&a=none**: Banners as backgrounds, no avatars  
+https://front.plural.codes/menti?b=text&a=none: **Banners as backgrounds, no avatars**  
 ![b=text&a=none example](docs/b-text-a-none.png)
 
-**https://front.plural.codes/menti?a=none&b=none**: No banners, no avatars  
+https://front.plural.codes/menti?a=none&b=none: **No banners, no avatars**  
 ![a=none&b=none example](docs/a-none-b-none.png)
 
-**https://front.plural.codes/menti?s=true&b=bottom&a=right**: System card, banners on the bottom, avatars on the right  
+https://front.plural.codes/menti?s=true&b=bottom&a=right: **System card, banners on the bottom, avatars on the right**  
 ![s=true&b=bottom&a=right example](docs/s-true-b-bottom-a-right.png)
 
-**https://front.plural.codes/menti**: Default settings (no parameters)  
+https://front.plural.codes/menti: Default settings (no parameters)  
 ![Default example](docs/default.png)
 
 # Privacy Policy
