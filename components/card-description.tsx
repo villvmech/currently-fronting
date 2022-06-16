@@ -11,7 +11,7 @@ const CardDescription = (props: CardDescriptionProps) => {
   const { description, htmlReactParserOptions } = props
 
   return (
-    <div className='text-justify'>
+    <div className='text-left'>
       {parse(toHTML(description, { embed: true }), htmlReactParserOptions)}
     </div>
   )

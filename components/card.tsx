@@ -1,4 +1,4 @@
-import { Member, System } from '../util/types'
+import { Member, System } from '../util/pk-types'
 import {
   DOMNode,
   Element,
@@ -10,10 +10,12 @@ import CardAvatar from './card-avatar'
 import CardBanner from './card-banner'
 import CardPronouns from './card-pronouns'
 import CardDescription from './card-description'
+import { BannerPosition, AvatarPosition } from '../util/types'
 
 interface CardProps {
-  member?: Member
-  system?: System
+  data: Member | System
+  bannerPosition: BannerPosition
+  avatarPosition: AvatarPosition
 }
 
 const timestampRegex = /<t:(\d{10})(:[tTdDfFR])?>/g
@@ -62,67 +64,70 @@ const htmlReactParserOptions = {
 } as HTMLReactParserOptions
 
 const Card = (props: CardProps) => {
-  const { member, system } = props
+  const { data, bannerPosition, avatarPosition } = props
+  const name = data.name
+  const banner = data.banner
+  const avatar_url = data.avatar_url
+  const color = data.color
+  const pronouns = data.pronouns
+  const description = data.description
+  const display_name = 'display_name' in data ? data.display_name : 'System'
+  const birthday = 'birthday' in data ? data.birthday : null
 
-  const cardClasses = system
-    ? 'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded'
-    : 'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col items-center gap-2'
+  const cardClasses =
+    'container max-w-md p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center rounded flex flex-col gap-2'
   return (
     <div className={cardClasses}>
-      {member?.banner && (
-        <CardBanner name={member.name} banner={member.banner} />
+      {banner && bannerPosition === 'text' && (
+        <CardBanner banner={banner}>
+          <h1 className='text-xl font-bold'>{name}</h1>
+          {display_name && display_name && (
+            <h2 className='text-lg italic'>{display_name}</h2>
+          )}
+          {pronouns && (
+            <CardPronouns
+              pronouns={pronouns}
+              htmlReactParserOptions={htmlReactParserOptions}
+            />
+          )}
+          {birthday && <div className='italic'>{birthday}</div>}
+        </CardBanner>
       )}
-      {system?.banner && (
-        <CardBanner name={system.name} banner={system.banner} />
-      )}
+      {banner && bannerPosition === 'top' && <CardBanner banner={banner} />}
       <div>
-        {member?.avatar_url && (
+        {avatar_url && avatarPosition !== 'none' && (
           <CardAvatar
-            name={member.name}
-            avatar_url={member.avatar_url}
-            color={member.color}
-          />
-        )}
-        {system?.avatar_url && (
-          <CardAvatar
-            name={system.name}
-            avatar_url={system.avatar_url}
-            color={system.color}
+            name={name}
+            avatar_url={avatar_url}
+            color={color}
+            avatarPosition={avatarPosition}
           />
         )}
         <div>
-          <h1 className='text-xl font-bold'>{member?.name ?? system?.name}</h1>
-          {member && member.display_name && (
-            <h2 className='text-lg italic'>{member.display_name}</h2>
+          {(!banner || bannerPosition !== 'text') && (
+            <div>
+              <h1 className='text-xl font-bold'>{name}</h1>
+              {display_name && display_name && (
+                <h2 className='text-lg italic'>{display_name}</h2>
+              )}
+              {pronouns && (
+                <CardPronouns
+                  pronouns={pronouns}
+                  htmlReactParserOptions={htmlReactParserOptions}
+                />
+              )}
+              {birthday && <div className='italic'>{birthday}</div>}
+            </div>
           )}
-          {system && <h2 className='text-lg italic'>System</h2>}
-          {member?.pronouns && (
-            <CardPronouns
-              pronouns={member.pronouns}
-              htmlReactParserOptions={htmlReactParserOptions}
-            />
-          )}
-          {system?.pronouns && (
-            <CardPronouns
-              pronouns={system.pronouns}
-              htmlReactParserOptions={htmlReactParserOptions}
-            />
-          )}
-          {member?.birthday && <div className='italic'>{member.birthday}</div>}
-          {member?.description && (
+          {description && (
             <CardDescription
-              description={member.description}
-              htmlReactParserOptions={htmlReactParserOptions}
-            />
-          )}
-          {system?.description && (
-            <CardDescription
-              description={system.description}
+              description={description}
               htmlReactParserOptions={htmlReactParserOptions}
             />
           )}
         </div>
       </div>
+      {banner && bannerPosition === 'bottom' && <CardBanner banner={banner} />}
     </div>
   )
 }

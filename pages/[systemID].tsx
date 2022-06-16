@@ -3,7 +3,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import useSWR from 'swr'
 import Card from '../components/card'
-import { Switch, System } from '../util/types'
+import { Switch, System } from '../util/pk-types'
+import { BannerPosition, AvatarPosition } from '../util/types'
 
 interface FrontersAndSystem {
   fronters: Switch | null
@@ -18,10 +19,7 @@ const getFrontersAndSystem = async (
   includeSystem: FrontersAndSystemKey,
 ) => {
   let system: System | null = null
-  if (
-    includeSystem === 'true' ||
-    (includeSystem === '1' && typeof systemID === 'string')
-  ) {
+  if (includeSystem === 'true' && typeof systemID === 'string') {
     const systemData = await fetch(
       `https://api.pluralkit.me/v2/systems/${systemID}`,
     )
@@ -55,8 +53,38 @@ const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
 
 const Home: NextPage = () => {
   const router = useRouter()
-  const { systemID, s } = router.query
+  const { systemID, s, b, a } = router.query
   const { fronters, system } = useFrontersAndSystem([systemID, s])
+
+  let bannerPosition: BannerPosition
+  switch (b) {
+    case 'text':
+      bannerPosition = 'text'
+      break
+    case 'bottom':
+      bannerPosition = 'bottom'
+      break
+    case 'none':
+      bannerPosition = 'none'
+      break
+    default:
+      bannerPosition = 'top'
+  }
+
+  let avatarPosition: AvatarPosition
+  switch (a) {
+    case 'right':
+      avatarPosition = 'right'
+      break
+    case 'center':
+      avatarPosition = 'center'
+      break
+    case 'none':
+      avatarPosition = 'none'
+      break
+    default:
+      avatarPosition = 'left'
+  }
 
   return (
     <div className='flex flex-col justify-between min-h-screen'>
@@ -80,11 +108,21 @@ const Home: NextPage = () => {
 
         {fronters &&
           fronters?.members.map(member => (
-            <Card key={member.uuid} member={member} />
+            <Card
+              key={member.uuid}
+              data={member}
+              bannerPosition={bannerPosition}
+              avatarPosition={avatarPosition}
+            />
           ))}
-      </div>
-      <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center'>
-        {system && <Card key={system.uuid} system={system} />}
+
+        {system && (
+          <Card
+            data={system}
+            bannerPosition={bannerPosition}
+            avatarPosition={avatarPosition}
+          />
+        )}
       </div>
 
       {/* prettier-ignore */}
