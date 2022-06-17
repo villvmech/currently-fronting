@@ -1,3 +1,3 @@
-const DiscordCDNToMediaCache = /^https:\/\/cdn.discordapp.com\//i
+const DiscordCDNToMediaCache = /^https:\/\/cdn\.discordapp\.com\//i
 
 export default DiscordCDNToMediaCache
