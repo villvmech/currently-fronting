@@ -78,7 +78,7 @@ const Card = (props: CardProps) => {
   return (
     <div className={cardClasses}>
       {banner && bannerPosition === 'text' && (
-        <CardBanner banner={banner}>
+        <CardBanner banner={banner} name={name}>
           <CardText
             className='text-xl font-bold'
             embed={false}
@@ -103,7 +103,9 @@ const Card = (props: CardProps) => {
           {birthday && <div className='italic'>{birthday}</div>}
         </CardBanner>
       )}
-      {banner && bannerPosition === 'top' && <CardBanner banner={banner} />}
+      {banner && bannerPosition === 'top' && (
+        <CardBanner name={name} banner={banner} />
+      )}
       <div>
         {avatar_url && avatarPosition !== 'none' && (
           <CardAvatar
@@ -150,7 +152,9 @@ const Card = (props: CardProps) => {
           )}
         </div>
       </div>
-      {banner && bannerPosition === 'bottom' && <CardBanner banner={banner} />}
+      {banner && bannerPosition === 'bottom' && (
+        <CardBanner name={name} banner={banner} />
+      )}
     </div>
   )
 }
