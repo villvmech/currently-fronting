@@ -1,4 +1,5 @@
 import { AvatarPosition } from '../util/types'
+import DiscordCDNToMediaCache from '../util/discord-cdn-to-media-cache'
 
 interface CardAvatarProps {
   name: string
@@ -9,6 +10,11 @@ interface CardAvatarProps {
 
 const CardAvatar = (props: CardAvatarProps) => {
   const { name, avatar_url, color, avatarPosition } = props
+  const resizedAvatarURL = `${avatar_url.replace(
+    DiscordCDNToMediaCache,
+    'https://media.discordapp.net/',
+  )}?width=172&height=172`
+
   let floatClass: string
   switch (avatarPosition) {
     case 'right':
@@ -24,7 +30,7 @@ const CardAvatar = (props: CardAvatarProps) => {
   return (
     <img
       className={`max-h-48 border-4 object-cover rounded ${floatClass}`}
-      src={avatar_url}
+      src={resizedAvatarURL}
       alt={`Avatar for ${name}`}
       style={{
         borderColor: `#${color}`,
