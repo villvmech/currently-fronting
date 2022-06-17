@@ -13,7 +13,7 @@ const CardAvatar = (props: CardAvatarProps) => {
   const resizedAvatarURL = `${avatar_url.replace(
     DiscordCDNToMediaCache,
     'https://media.discordapp.net/',
-  )}?width=172&height=172`
+  )}?width=256&height=256`
 
   let floatClass: string
   switch (avatarPosition) {
@@ -29,14 +29,14 @@ const CardAvatar = (props: CardAvatarProps) => {
 
   return (
     <img
-      className={`max-h-48 border-4 object-cover rounded ${floatClass}`}
+      className={`h-48 w-48 border-4 object-cover rounded ${floatClass}`}
       src={resizedAvatarURL}
       alt={`Avatar for ${name}`}
       style={{
         borderColor: `#${color}`,
       }}
-      width={172}
-      height={172}
+      width={256}
+      height={256}
     />
   )
 }

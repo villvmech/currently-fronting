@@ -2,15 +2,16 @@ import DiscordCDNToMediaCache from '../util/discord-cdn-to-media-cache'
 
 interface CardBannerProps {
   banner: string
+  name: string
   children?: React.ReactNode
 }
 
 const CardBanner = (props: CardBannerProps) => {
-  const { banner, children } = props
+  const { banner, children, name } = props
   const resizedBannerURL = `${banner.replace(
     DiscordCDNToMediaCache,
     'https://media.discordapp.net/',
-  )}${children ? '?width=1200&height=480' : '?width=600&height=240'}`
+  )}?width=600&height=240`
 
   return children ? (
     <div
@@ -22,7 +23,7 @@ const CardBanner = (props: CardBannerProps) => {
     </div>
   ) : (
     <img
-      className='max-h-48 object-cover mx-auto rounded'
+      className='h-48 min-w-full object-cover mx-auto rounded'
       src={resizedBannerURL}
       alt={`Banner for ${name}`}
       width={600}
