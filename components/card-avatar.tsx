@@ -1,5 +1,5 @@
 import { AvatarPosition } from '../util/types'
-import DiscordCDNToMediaCache from '../util/discord-cdn-to-media-cache'
+import { DiscordCDNAttachmentRegex } from '../util/discord-cdn-handling'
 
 interface CardAvatarProps {
   name: string
@@ -10,10 +10,10 @@ interface CardAvatarProps {
 
 const CardAvatar = (props: CardAvatarProps) => {
   const { name, avatar_url, color, avatarPosition } = props
-  const resizedAvatarURL = `${avatar_url.replace(
-    DiscordCDNToMediaCache,
-    'https://media.discordapp.net/',
-  )}?width=256&height=256`
+  const resizedAvatarURL = avatar_url.replace(
+    DiscordCDNAttachmentRegex,
+    'https://media.discordapp.net/attachments/$1?width=256&height=256&format=webp',
+  )
 
   let floatClass: string
   switch (avatarPosition) {
