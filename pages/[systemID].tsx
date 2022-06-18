@@ -51,7 +51,7 @@ const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
   return data ? data : { fronters: null, system: null }
 }
 
-const Home: NextPage = () => {
+const Front: NextPage = () => {
   const router = useRouter()
   const { systemID, s, b, a } = router.query
   const { fronters, system } = useFrontersAndSystem([systemID, s])
@@ -133,4 +133,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Front
