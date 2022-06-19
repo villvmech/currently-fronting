@@ -1,4 +1,4 @@
-name: 'Analyze code quality'
+name: 'Audit code and check style'
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
 
 jobs:
   audit-lint-and-prettify:
-    name: Lint and prettify
+    name: Audit, lint and prettify
     runs-on: ubuntu-latest
 
     strategy:
