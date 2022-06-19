@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { useEffect } from 'react'
 import useSWR from 'swr'
 import Card from '../components/card'
 import { Switch, System } from '../util/pk-types'
 import { BannerPosition, AvatarPosition } from '../util/types'
+import hljs from 'highlight.js'
 
 interface FrontersAndSystem {
   fronters: Switch | null
@@ -55,6 +57,11 @@ const Home: NextPage = () => {
   const router = useRouter()
   const { systemID, s, b, a } = router.query
   const { fronters, system } = useFrontersAndSystem([systemID, s])
+
+  useEffect(() => {
+    hljs.configure({ cssSelector: 'pre code.hljs' })
+    hljs.highlightAll()
+  }, [fronters, system])
 
   let bannerPosition: BannerPosition
   switch (b) {
