@@ -12,7 +12,6 @@ interface FrontersAndSystem {
 }
 
 type FrontersAndSystemKey = string | string[] | undefined
-type FrontersAndSystemKeys = FrontersAndSystemKey[]
 
 const getFrontersAndSystem = async (
   systemID: FrontersAndSystemKey,
@@ -41,7 +40,9 @@ const getFrontersAndSystem = async (
   return { fronters, system }
 }
 
-const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
+const useFrontersAndSystem = (
+  frontersAndSystemKeys: FrontersAndSystemKey[],
+) => {
   const { data } = useSWR<FrontersAndSystem>(
     [frontersAndSystemKeys[0], frontersAndSystemKeys[1]],
     (systemID, includeSystem) => getFrontersAndSystem(systemID, includeSystem),
@@ -104,7 +105,7 @@ const Front: NextPage = () => {
         />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      
+
       <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
         {fronters &&
           fronters?.members.map(member => (
@@ -133,4 +134,5 @@ const Front: NextPage = () => {
   )
 }
 
+export { getFrontersAndSystem, useFrontersAndSystem }
 export default Front
