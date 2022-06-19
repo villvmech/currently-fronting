@@ -7,19 +7,21 @@ const getFrontersAndSystem = jest.spyOn(
   'getFrontersAndSystem',
 )
 
-it('renders the footer only when an invalid system ID is provided', () => {
-  useRouter.mockImplementation(() => ({
-    query: {
-      systemID: 'invalid',
-    },
-  }))
-  getFrontersAndSystem.mockImplementation(() => {
-    return {
-      fronters: null,
-      system: null,
-    }
-  })
+describe('fronters and system cards', () => {
+  it('renders the footer only when an invalid system ID is provided', () => {
+    useRouter.mockImplementation(() => ({
+      query: {
+        systemID: 'invalid',
+      },
+    }))
+    getFrontersAndSystem.mockImplementation(() => {
+      return {
+        fronters: null,
+        system: null,
+      }
+    })
 
-  const { container } = render(<Front />)
-  expect(container).toMatchSnapshot()
+    const { container } = render(<Front />)
+    expect(container).toMatchSnapshot()
+  })
 })

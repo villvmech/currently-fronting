@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders the footer only when an invalid system ID is provided 1`] = `
+exports[`fronters and system cards renders the footer only when an invalid system ID is provided 1`] = `
 <div>
   <div
     class="flex flex-col justify-between min-h-screen"
