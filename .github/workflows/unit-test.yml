@@ -1,4 +1,4 @@
-name: 'Audit code and check style'
+name: 'Run unit tests'
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
     branches: ['main']
 
 jobs:
-  audit-lint-and-prettify:
-    name: Audit, lint and prettify
+  test:
+    name: Run unit tests
     runs-on: ubuntu-latest
 
     strategy:
@@ -25,6 +25,4 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci --audit=false
-      - run: npm audit --omit=dev
-      - run: npm run lint
-      - run: npm run prettify
+      - run: npm test
