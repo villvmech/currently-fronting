@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react'
-import Front from '../pages/[systemID]'
+import Front from '../../pages/[systemID]'
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 const getFrontersAndSystem = jest.spyOn(
-  require('../pages/[systemID]'),
+  require('../../util/front-utils'),
   'getFrontersAndSystem',
 )
 
