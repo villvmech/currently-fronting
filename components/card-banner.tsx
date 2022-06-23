@@ -1,4 +1,4 @@
-import { resizeMedia } from '../util/discord-cdn-handling'
+import { resizeMedia } from '../utils/discord-cdn-handling'
 
 interface CardBannerProps {
   banner: string

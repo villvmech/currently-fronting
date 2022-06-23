@@ -3,9 +3,9 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import Card from '../components/card'
-import { BannerPosition, AvatarPosition } from '../util/types'
+import { BannerPosition, AvatarPosition } from '../utils/types'
 import hljs from 'highlight.js'
-import { useFrontersAndSystem } from '../util/front-utils'
+import { useFrontersAndSystem } from '../utils/front-utils'
 
 const Front: NextPage = () => {
   const router = useRouter()

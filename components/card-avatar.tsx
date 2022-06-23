@@ -1,5 +1,5 @@
-import { AvatarPosition } from '../util/types'
-import { resizeMedia } from '../util/discord-cdn-handling'
+import { AvatarPosition } from '../utils/types'
+import { resizeMedia } from '../utils/discord-cdn-handling'
 
 interface CardAvatarProps {
   name: string

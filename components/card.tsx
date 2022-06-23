@@ -1,4 +1,4 @@
-import { Member, System } from '../util/pk-types'
+import { Member, System } from '../utils/pk-types'
 import {
   DOMNode,
   Element,
@@ -9,7 +9,7 @@ import { DateTime, DateTimeFormatOptions } from 'luxon'
 import CardAvatar from './card-avatar'
 import CardBanner from './card-banner'
 import CardText from './card-text'
-import { BannerPosition, AvatarPosition } from '../util/types'
+import { BannerPosition, AvatarPosition } from '../utils/types'
 
 interface CardProps {
   data: Member | System

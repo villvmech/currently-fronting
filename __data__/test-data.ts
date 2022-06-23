@@ -1,4 +1,4 @@
-import { Switch, Member } from '../util/pk-types'
+import { Switch, Member } from '../utils/pk-types'
 
 const sampleMember: Member = {
   id: '',

@@ -1,4 +1,4 @@
-import { getFrontersAndSystem } from '../../util/front-utils'
+import { getFrontersAndSystem } from '../../utils/front-utils'
 import 'isomorphic-fetch'
 import { sampleSwitch } from '../../__data__/test-data'
 
