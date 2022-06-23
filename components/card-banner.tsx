@@ -8,7 +8,7 @@ interface CardBannerProps {
 
 const CardBanner = (props: CardBannerProps) => {
   const { banner, children, name } = props
-  const resizedBannerURL = resizeMedia(banner, 600, 240, 'webp')
+  const resizedBannerURL = resizeMedia(banner, [600, 240])
 
   return children ? (
     <div

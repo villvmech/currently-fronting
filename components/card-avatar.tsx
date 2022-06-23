@@ -10,7 +10,7 @@ interface CardAvatarProps {
 
 const CardAvatar = (props: CardAvatarProps) => {
   const { name, avatar_url, color, avatarPosition } = props
-  const resizedAvatarURL = resizeMedia(avatar_url, 256, 256, 'webp')
+  const resizedAvatarURL = resizeMedia(avatar_url)
 
   let floatClass: string
   switch (avatarPosition) {

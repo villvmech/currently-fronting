@@ -3,13 +3,16 @@ const discordCDNAttachmentRegex =
 
 const resizeMedia = (
   mediaURL: string,
-  width: number,
-  height: number,
-  format: string,
+  dimensions?: number[],
+  format?: string,
 ) =>
   mediaURL.replace(
     discordCDNAttachmentRegex,
-    `https://media.discordapp.net/attachments/$1?width=${width.toString()}&height=${height.toString()}&format=${format}`,
+    `https://media.discordapp.net/attachments/$1?width=${
+      dimensions?.[0] ?? 256
+    }&height=${dimensions?.[1] ?? dimensions?.[0] ?? 256}&format=${
+      format ?? 'webp'
+    }`,
   )
 
 export { resizeMedia }
