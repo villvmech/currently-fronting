@@ -2,58 +2,12 @@ import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import useSWR from 'swr'
 import Card from '../components/card'
-import { Switch, System } from '../util/pk-types'
-import { BannerPosition, AvatarPosition } from '../util/types'
+import { BannerPosition, AvatarPosition } from '../utils/types'
 import hljs from 'highlight.js'
+import { useFrontersAndSystem } from '../utils/front-utils'
 
-interface FrontersAndSystem {
-  fronters: Switch | null
-  system: System | null
-}
-
-type FrontersAndSystemKey = string | string[] | undefined
-type FrontersAndSystemKeys = FrontersAndSystemKey[]
-
-const getFrontersAndSystem = async (
-  systemID: FrontersAndSystemKey,
-  includeSystem: FrontersAndSystemKey,
-) => {
-  let system: System | null = null
-  if (includeSystem === 'true' && typeof systemID === 'string') {
-    const systemData = await fetch(
-      `https://api.pluralkit.me/v2/systems/${systemID}`,
-    )
-    if (systemData.ok) {
-      system = await systemData.json()
-    }
-  }
-
-  let fronters: Switch | null = null
-  if (typeof systemID === 'string') {
-    const frontersData = await fetch(
-      `https://api.pluralkit.me/v2/systems/${systemID}/fronters`,
-    )
-    if (frontersData.ok) {
-      fronters = await frontersData.json()
-    }
-  }
-
-  return { fronters, system }
-}
-
-const useFrontersAndSystem = (frontersAndSystemKeys: FrontersAndSystemKeys) => {
-  const { data } = useSWR<FrontersAndSystem>(
-    [frontersAndSystemKeys[0], frontersAndSystemKeys[1]],
-    (systemID, includeSystem) => getFrontersAndSystem(systemID, includeSystem),
-    { refreshInterval: 30 * 1000 },
-  )
-
-  return data ? data : { fronters: null, system: null }
-}
-
-const Home: NextPage = () => {
+const Front: NextPage = () => {
   const router = useRouter()
   const { systemID, s, b, a } = router.query
   const { fronters, system } = useFrontersAndSystem([systemID, s])
@@ -95,24 +49,24 @@ const Home: NextPage = () => {
 
   return (
     <div className='flex flex-col justify-between min-h-screen'>
-      <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
-        <Head>
-          <title>
-            {fronters
-              ? fronters.members.map(member => member.name).join(' | ')
-              : 'currently fronting'}
-          </title>
-          <meta
-            name='description'
-            content={
-              system
-                ? `Current fronters for ${system.name}`
-                : "a web app for displaying a PluralKit system's current public fronters"
-            }
-          />
-          <link rel='icon' href='/favicon.ico' />
-        </Head>
+      <Head>
+        <title>
+          {fronters
+            ? fronters.members.map(member => member.name).join(' | ')
+            : 'currently fronting'}
+        </title>
+        <meta
+          name='description'
+          content={
+            system
+              ? `Current fronters for ${system.name}`
+              : "a web app for displaying a PluralKit system's current public fronters"
+          }
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
 
+      <div className='container mx-auto p-2 flex flex-row flex-wrap justify-center gap-2'>
         {fronters &&
           fronters?.members.map(member => (
             <Card
@@ -140,4 +94,4 @@ const Home: NextPage = () => {
   )
 }
 
-export default Home
+export default Front

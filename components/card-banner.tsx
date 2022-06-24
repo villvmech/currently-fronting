@@ -1,4 +1,4 @@
-import { DiscordCDNAttachmentRegex } from '../util/discord-cdn-handling'
+import { resizeMedia } from '../utils/discord-cdn-handling'
 
 interface CardBannerProps {
   banner: string
@@ -8,10 +8,7 @@ interface CardBannerProps {
 
 const CardBanner = (props: CardBannerProps) => {
   const { banner, children, name } = props
-  const resizedBannerURL = banner.replace(
-    DiscordCDNAttachmentRegex,
-    'https://media.discordapp.net/attachments/$1?width=600&height=240&format=webp',
-  )
+  const resizedBannerURL = resizeMedia(banner, [600, 240])
 
   return children ? (
     <div
