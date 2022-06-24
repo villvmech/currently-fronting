@@ -3,7 +3,7 @@ import Front from '../../pages/[systemID]'
 
 const useRouter = jest.spyOn(require('next/router'), 'useRouter')
 const getFrontersAndSystem = jest.spyOn(
-  require('../../util/front-utils'),
+  require('../../utils/front-utils'),
   'getFrontersAndSystem',
 )
 
