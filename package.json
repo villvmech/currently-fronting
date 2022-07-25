@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "discord-markdown": "^2.5.1",
-    "highlight.js": "^11.5.1",
+    "highlight.js": "^11.6.0",
     "html-react-parser": "^3.0.1",
     "luxon": "^3.0.1",
     "next": "12.2.2",
