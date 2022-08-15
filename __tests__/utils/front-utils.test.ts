@@ -23,7 +23,7 @@ describe('get fronters and system from the PluralKit API', () => {
   })
 
   it('returns fronters with system set to null if includeSystem is set to "false"', async () => {
-    fetch.mockImplementationOnce(async () => {
+    fetch.mockImplementation(async () => {
       return new Response(JSON.stringify(sampleSwitch), { status: 200 })
     })
 
