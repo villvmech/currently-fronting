@@ -6,7 +6,7 @@ The index automatically redirects to an example page, but folks can find their s
 
 ## Query parameters and viewing own private fronters
 
-An interface for configuring query parameters and viewing y'all's own system's private fronters is coming soon&trade;. Until then, below are a list of currently available query parameters for configuring the layout of y'all's link, along with their acceptable values. Any unacceptable value will result in the default being used instead.
+An interface for configuring query parameters is coming soon&trade;. Until then, below are a list of currently available query parameters for configuring the layout of y'all's link, along with their acceptable values. Any unacceptable value will result in the default being used instead.
 
 - `s`: System
   - `true`: Display a system card at the end of the member list
@@ -48,4 +48,4 @@ Requests to the [PluralKit API](https://pluralkit.me/api/) are made client-side,
 
 # Bug Reporting
 
-If you encounter an issue with the app, please feel free to file a GitHub issue in this project or mention us (`pulchra mentis#1321`) in the PluralKit Discord server's `#community-resources-help` channel.
+If you encounter an issue with the app, please feel free to file a GitHub issue in this project or mention us (`Arcana#1321`) in the PluralKit Discord server's `#community-resources-help` channel.

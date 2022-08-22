@@ -19,7 +19,7 @@ exports[`fronters and system cards renders the footer only when an invalid syste
       </span>
        of 
       <a
-        href="https://github.com/obscura-scripturae/currently-fronting/blob/main/package.json"
+        href="https://github.com/systemic-chaos/currently-fronting/blob/main/package.json"
       >
         open source software
       </a>
@@ -31,19 +31,19 @@ exports[`fronters and system cards renders the footer only when an invalid syste
       </a>
       . Developed by 
       <a
-        href="https://github.com/pulchra-mentis"
+        href="https://github.com/Arcana1321"
       >
-        pulchra mentis
+        Arcana
       </a>
        and available under the 
       <a
-        href="https://github.com/obscura-scripturae/currently-fronting/blob/main/LICENSE"
+        href="https://github.com/systemic-chaos/currently-fronting/blob/main/LICENSE"
       >
         AGPL 3.0 license
       </a>
       . Find a bug? Follow the instructions on 
       <a
-        href="https://github.com/obscura-scripturae/currently-fronting"
+        href="https://github.com/systemic-chaos/currently-fronting"
       >
         GitHub
       </a>
