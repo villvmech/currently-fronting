@@ -48,4 +48,4 @@ Requests to the [PluralKit API](https://pluralkit.me/api/) are made client-side,
 
 # Bug Reporting
 
-If you encounter an issue with the app, please feel free to file a GitHub issue in this project or mention us (`Arcana#1321`) in the PluralKit Discord server's `#community-resources-help` channel.
+If you encounter an issue with the app, please feel free to file a GitHub issue in this project or DM us (`Arcana#1321`) on Discord.
