@@ -8,11 +8,13 @@
   "scripts": {
     "compile": "npx tsc",
     "prettify": "npx prettier --check .",
+    "prettify:dev": "npx prettier --write .",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "npx jest --ci"
+    "test": "npx jest --ci",
+    "test:dev": "npx jest --watch"
   },
   "dependencies": {
     "discord-markdown": "^2.5.1",

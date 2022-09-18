@@ -88,7 +88,7 @@ const Front: NextPage = () => {
 
       {/* prettier-ignore */}
       <footer className='container mx-auto mb-2 max-w-md md:max-w-4xl p-2 bg-slate-100 dark:bg-slate-800 text-slate-900 dark:text-slate-50 text-center text-sm rounded'>
-        Powered by <span className='italic'>a lot</span> of <a href='https://github.com/systemic-chaos/currently-fronting/blob/main/package.json'>open source software</a> and designed to interface with <a href='https://pluralkit.me/'>PluralKit</a>. Developed by <a href='https://github.com/Arcana1321'>Arcana</a> and available under the <a href='https://github.com/systemic-chaos/currently-fronting/blob/main/LICENSE'>AGPL 3.0 license</a>. Find a bug? Follow the instructions on <a href='https://github.com/systemic-chaos/currently-fronting'>GitHub</a> in the README.
+        Powered by <span className='italic'>a lot</span> of <a href='https://github.com/systemic-chaos/currently-fronting/blob/main/package.json'>open source software</a> and designed to interface with <a href='https://pluralkit.me/'>PluralKit</a>. Developed by <a href='https://github.com/ArcanaOfSouls'>Arcana</a> and available under the <a href='https://github.com/systemic-chaos/currently-fronting/blob/main/LICENSE'>AGPL 3.0 license</a>. Find a bug? Follow the instructions on <a href='https://github.com/systemic-chaos/currently-fronting'>GitHub</a> in the README.
       </footer>
     </div>
   )
