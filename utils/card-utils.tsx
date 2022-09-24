@@ -8,7 +8,7 @@ import { DateTime, DateTimeFormatOptions } from 'luxon'
 
 const timestampRegex = /<t:(\d{10})(:[tTdDfFR])?>/g
 
-const htmlReactParserOptions = {
+const htmlReactParserOptions: HTMLReactParserOptions = {
   replace: (node: DOMNode) => {
     if (
       node instanceof Element &&
@@ -49,6 +49,6 @@ const htmlReactParserOptions = {
       return <span>{formattedDateTime}</span>
     }
   },
-} as HTMLReactParserOptions
+}
 
 export { htmlReactParserOptions }
