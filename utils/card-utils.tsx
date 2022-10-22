@@ -3,8 +3,10 @@ import {
   Element,
   HTMLReactParserOptions,
   Text,
+  domToReact,
 } from 'html-react-parser'
 import { DateTime, DateTimeFormatOptions } from 'luxon'
+import CardSpoiler from '../components/card-spoiler'
 
 const timestampRegex = /<t:(\d{10})(:[tTdDfFR])?>/g
 
@@ -13,6 +15,7 @@ const htmlReactParserOptions: HTMLReactParserOptions = {
     if (
       node instanceof Element &&
       node.name === 'img' &&
+      node.attribs?.class &&
       node.attribs.class.split(' ').includes('d-emoji')
     ) {
       return (
@@ -21,6 +24,18 @@ const htmlReactParserOptions: HTMLReactParserOptions = {
           src={node.attribs.src}
           alt={node.attribs.alt}
         />
+      )
+    }
+    if (
+      node instanceof Element &&
+      node.name === 'span' &&
+      node.attribs?.class &&
+      node.attribs.class.split(' ').includes('d-spoiler')
+    ) {
+      return (
+        <CardSpoiler embed={true} className={node.attribs.class}>
+          {domToReact(node.children)}
+        </CardSpoiler>
       )
     }
     if (node.type === 'text' && timestampRegex.test((node as Text).data)) {

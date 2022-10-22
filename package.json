@@ -1,10 +1,10 @@
 {
   "name": "currently-fronting",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
-  "repository": "github:obscura-scripturae/currently-fronting",
+  "repository": "github:systemic-chaos/currently-fronting",
   "license": "AGPL-3.0-or-later",
-  "author": "pulchra mentis",
+  "author": "Arcana (https://github.com/ArcanaOfSouls)",
   "scripts": {
     "compile": "npx tsc",
     "prettify": "npx prettier --check .",

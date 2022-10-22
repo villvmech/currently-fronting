@@ -24,4 +24,10 @@
   pre code.hljs {
     @apply whitespace-pre-wrap rounded p-2 overflow-visible !important;
   }
+  span.spoilered {
+    @apply bg-slate-200 dark:bg-slate-700 text-slate-200 dark:text-slate-700 rounded cursor-pointer !important;
+  }
+  span.unspoilered {
+    @apply bg-slate-200 dark:bg-slate-700 text-slate-900 dark:text-slate-50 rounded cursor-pointer !important;
+  }
 }

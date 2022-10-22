@@ -1,5 +1,4 @@
 import { toHTML } from 'discord-markdown'
-
 import parse, { HTMLReactParserOptions } from 'html-react-parser'
 
 interface CardPronounsProps {
