@@ -2,8 +2,8 @@ import '../styles/globals.css'
 import 'highlight.js/styles/github-dark.css'
 import type { AppProps } from 'next/app'
 
-const MyApp = ({ Component, pageProps }: AppProps) => {
+const CurrentlyFronting = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />
 }
 
-export default MyApp
+export default CurrentlyFronting

@@ -1,5 +1,4 @@
 import { toHTML } from 'discord-markdown'
-
 import parse, { HTMLReactParserOptions } from 'html-react-parser'
 
 interface CardTextProps {
@@ -10,11 +9,11 @@ interface CardTextProps {
 }
 
 const CardText = (props: CardTextProps) => {
-  const { text, htmlReactParserOptions, className } = props
+  const { text, embed, htmlReactParserOptions, className } = props
 
   return (
     <div className={className}>
-      {parse(toHTML(text, { embed: true }), htmlReactParserOptions)}
+      {parse(toHTML(text, { embed: embed }), htmlReactParserOptions)}
     </div>
   )
 }
