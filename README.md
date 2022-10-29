@@ -38,11 +38,7 @@ Requests to the [PluralKit API](https://pluralkit.me/api/) are made client-side,
 
 ## bug reporting and feature requests
 
-If y'all encounter an issue with the app, please feel free to file a GitHub issue in this project or DM us (`Arcana#1321`) on Discord. Similarly, feel free to do the same if y'all would like to see a particular feature implemented in the future.
-
-## addendum
-
-[^0.2.0]: If y'all ended up here through the footnote provided in [query paramaters](#query-parameters), congratulations! We appreciate y'all taking the the time to follow our project's development. We know things have been a little slow here, but life has a way of catching up with folks, and things have indeed been hectic for our system lately. That said, we have both [an exciting news item](#road-to-version-020) and a (most likely, as far as anyone knows) unsubstantiated [rumor of possible future development](#future-projects-and-integrations) to share with those of y'all who somehow wound up in this far-flung section buried at the bottom of a `README`.
+If y'all encounter an issue with the app, please feel free to file a GitHub issue in this project[^discord]. Similarly, feel free to do the same if y'all would like to see a particular feature implemented in the future.
 
 ### road to version `0.2.0`
 
@@ -77,4 +73,9 @@ We sincerely hope this is exciting for all of y'all reading this as it is for us
 
 ### future projects and integrations
 
-We're also available for support on Matrix as [@arcana:matrix.pengi-san.moe](https://matrix.to/#/@arcana:matrix.pengi-san.moe). As for why that's relevant... Well, for those of y'all monitoring this project, just be aware that we have some interesting ideas in mind for future projects. The description for [the GitHub organization responsible for maintaining this project](https://github.com/systemic-chaos) might give y'all something to ponder. It's definitely still early days, and there's no guarantee that our plans will come to fruition. But as always, stay tuned!
+We're in the process of spinning up a public Matrix space for some of our development work. As for why that's relevant... Well, for those of y'all monitoring this project, just be aware that we have some interesting ideas in mind for future projects. The description for [the GitHub organization responsible for maintaining this project](https://github.com/systemic-chaos) might give y'all something to ponder. It's definitely still early days, and there's no guarantee that our plans will come to fruition. But as always, stay tuned!
+
+## endnotes
+
+[^0.2.0]: If y'all ended up here through the endnote provided in [query paramaters](#query-parameters), congratulations! We appreciate y'all taking the the time to follow our project's development. We know things have been a little slow here, but life has a way of catching up with folks, and things have indeed been hectic for our system lately. That said, we have both [an exciting news item](#road-to-version-020) and a (most likely, as far as anyone knows) unsubstantiated [rumor of possible future development](#future-projects-and-integrations) to share with those of y'all who somehow wound up in this far-flung section buried at the bottom of a `README`.
+[^discord]: We used to provide Discord contact information as a way to request support, but that was dependent on us being members of the PluralKit support server on Discord (which we are not at this time). For our own security, we don't accept Discord friend requests from users we don't share servers with. GitHub issues are currently the best way to contact us with feature requests and/or bug reports, at least until [our Matrix space is ready for access by users at large](#future projects and integrations). We appreciate y'all's understanding in this regard.
